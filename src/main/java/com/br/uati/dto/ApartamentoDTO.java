@@ -1,18 +1,12 @@
-package com.br.uati.models;
-
-import java.io.Serializable;
+package com.br.uati.dto;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-import com.br.uati.dto.ProprietarioDTO;
 import com.br.uati.enums.StatusAlugado;
+import com.br.uati.models.Apartamento;
 
-@Document
-public class Apartamento implements Serializable {
-
-	private static final long serialVersionUID = 1L;
-
+public class ApartamentoDTO {
+	
 	@Id
 	private String idApartamento;
 
@@ -21,18 +15,18 @@ public class Apartamento implements Serializable {
 	private ProprietarioDTO proprietario;
 
 	private Integer statusAlugado;
-
-	public Apartamento() {
+	
+	public ApartamentoDTO() {
 
 	}
-
-	public Apartamento(String idApartamento, String numeroApartamento, ProprietarioDTO proprietario,
-			StatusAlugado statusAlugado) {
-		super();
-		this.idApartamento = idApartamento;
-		this.numeroApartamento = numeroApartamento;
-		this.proprietario = proprietario;
-		setStatusAlugado(statusAlugado);
+	
+	public ApartamentoDTO(Apartamento objApartamento) {
+		
+		this.idApartamento = objApartamento.getIdApartamento();
+		this.numeroApartamento = objApartamento.getNumeroApartamento();
+		this.proprietario = objApartamento.getProprietario();
+		this.statusAlugado = objApartamento.getStatusAlugado().getCodigoEnum();
+		
 	}
 
 	public String getIdApartamento() {
