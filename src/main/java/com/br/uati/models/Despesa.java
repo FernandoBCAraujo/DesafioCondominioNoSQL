@@ -89,7 +89,7 @@ public class Despesa implements Serializable {
 		return dataDespesa;
 	}
 
-	public void setDataDaDespesa(LocalDate dataDespesa) {
+	public void setDataDespesa(LocalDate dataDespesa) {
 		this.dataDespesa = dataDespesa;
 	}
 

@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.br.uati.dto.ApartamentoDTO;
 import com.br.uati.models.Apartamento;
 import com.br.uati.repositories.ApartamentoRepository;
 import com.br.uati.services.exception.ObjectNotFoundException;
@@ -27,31 +28,30 @@ public class ApartamentoService {
 				"Apartamento com id -> " + idApartamento + " <-, não foi encontrado."));
 	}
 
-//	public Apartamento insertApartamento(Apartamento objApartamento) {
-//		return apartamentoRepository.insert(objApartamento);
-//	}
-//	
-//	public void deleteApartamento(String idApartamento) {
-//		Apartamento objApartamento = findByIdApartamento(idApartamento);
-//		apartamentoRepository.delete(objApartamento);
-//	}
-//	
-//	public Apartamento updateApartamento(Apartamento objApartamento) {
-//		Apartamento newObjApartamento = findByIdApartamento(objApartamento.getIdApartamento());
-//		updateData(newObjApartamento, objApartamento);
-//		return apartamentoRepository.save(newObjApartamento);
-//	}
+	public Apartamento insertApartamento(Apartamento objApartamento) {
+		return apartamentoRepository.insert(objApartamento);
+	}
+	
+	public void deleteApartamento(String idApartamento) {
+		Apartamento objApartamento = findByIdApartamento(idApartamento);
+		apartamentoRepository.delete(objApartamento);
+	}
+	
+	public Apartamento updateApartamento(Apartamento objApartamento) {
+		Apartamento newObjApartamento = findByIdApartamento(objApartamento.getIdApartamento());
+		updateData(newObjApartamento, objApartamento);
+		return apartamentoRepository.save(newObjApartamento);
+	}
 
-//	private void updateData(Apartamento newObjApartamento, Apartamento objApartamento) {
-//		newObjApartamento.setCpf(objApartamento.getCpf());
-//		newObjApartamento.setNomeApartamento(objApartamento.getNomeApartamento());
-//		newObjApartamento.setEmail(objApartamento.getEmail());
-//		newObjApartamento.setNumeroTelefone(objApartamento.getNumeroTelefone());
-//	}
+	private void updateData(Apartamento newObjApartamento, Apartamento objApartamento) {
+		newObjApartamento.setNumeroApartamento(objApartamento.getNumeroApartamento());
+		newObjApartamento.setProprietario(objApartamento.getProprietario());
+		newObjApartamento.setStatusAlugado(objApartamento.getStatusAlugado());
+	}
 
-//	public Apartamento fromApartamentoDTO(ApartamentoDTO objApartamentoDTO) {
-//		return new Apartamento(objApartamentoDTO.getIdApartamento(), objApartamentoDTO.getNomeApartamento(),
-//				objApartamentoDTO.getCpf(), objApartamentoDTO.getNumeroTelefone(), objApartamentoDTO.getEmail());
-//	}
+	public Apartamento fromApartamentoDTO(ApartamentoDTO objApartamentoDTO) {
+		return new Apartamento(objApartamentoDTO.getIdApartamento(), objApartamentoDTO.getNumeroApartamento(),
+				objApartamentoDTO.getProprietario(), objApartamentoDTO.getStatusAlugado());
+	}
 
 }
